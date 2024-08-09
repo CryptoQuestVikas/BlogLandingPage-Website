@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Awesome Blog by vikas lahare </title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+    /* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Header and Navigation */
+header {
+    background-color: #f4f4f4;
+    padding: 1rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 1rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #007bff;
+}
+
+.burger {
+    display: none;
+    cursor: pointer;
+}
+
+.burger div {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Main content */
+main {
+    margin-top: 60px;
+}
+
+section {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1, h2 {
+    margin-bottom: 1rem;
+}
+
+/* Hero section */
+.hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://via.placeholder.com/1920x1080');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    text-align: center;
+    padding: 8rem 2rem;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #0056b3;
+}
+
+/* Featured posts */
+.post-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.post {
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.post:hover {
+    transform: translateY(-5px);
+}
+
+.post img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.post h3 {
+    padding: 1rem;
+}
+
+.post p {
+    padding: 0 1rem 1rem;
+}
+
+.read-more {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    margin: 0 1rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.read-more:hover {
+    background-color: #0056b3;
+}
+
+/* Contact form */
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+input, textarea {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+textarea {
+    height: 150px;
+}
+
+button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 0.75rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+    .nav-links {
+        position: absolute;
+        right: 0;
+        height: 92vh;
+        top: 8vh;
+        background-color: #f4f4f4;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 50%;
+        transform: translateX(100%);
+        transition: transform 0.5s ease-in;
+    }
+
+    .nav-links li {
+        opacity: 0;
+    }
+
+    .burger {
+        display: block;
+    }
+
+    .nav-active {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes navLinkFade {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+
+
+/* Categories section */
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+.category {
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.category i {
+    font-size: 3rem;
+    color: #007bff;
+    margin-bottom: 1rem;
+}
+
+.category h3 {
+    font-size: 1.2rem;
+}
+    
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">My Blog by vikas lahare</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#featured">Featured</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <h1>Welcome to My Awesome Blog making by vikas lahare</h1>
+            <p>Discover amazing stories and insights</p>
+            <a href="#featured" class="cta-button">Read Latest Posts</a>
+        </section>
+
+        <section id="about" class="about">
+            <h2>About Me</h2>
+            <p>I'm a passionate blogger sharing my thoughts and experiences with the world.</p>
+        </section>
+        
+        <section id="categories" class="categories">
+    <h2>Blog Categories</h2>
+    <div class="category-grid">
+        <div class="category">
+            <a href=""><i class="fas fa-laptop-code"></i> </a>
+            <h3>Technology</h3>
+        </div>
+        <div class="category">
+            <i class="fas fa-utensils"></i>
+            <h3>Food</h3>
+        </div>
+        <div class="category">
+            <i class="fas fa-plane"></i>
+            <h3>Travel</h3>
+        </div>
+        <div class="category">
+            <i class="fas fa-dumbbell"></i>
+            <h3>Fitness</h3>
+        </div>
+        <div class="category">
+            <i class="fas fa-book"></i>
+            <h3>Books</h3>
+        </div>
+        <div class="category">
+            <i class="fas fa-music"></i>
+            <h3>Music</h3>
+        </div>
+    </div>
+</section>
+
+        <section id="featured" class="featured">
+            <h2>Featured Posts</h2>
+            <div class="post-grid">
+                <article class="post">
+                    <img src="https://via.placeholder.com/300x200" alt="Post 1">
+                    <h3>Amazing Post Title 1</h3>
+                    <p>Short description of the post goes here...</p>
+                    <a href="#" class="read-more">Read More</a>
+                </article>
+                <article class="post">
+                    <img src="https://via.placeholder.com/300x200" alt="Post 2">
+                    <h3>Amazing Post Title 2</h3>
+                    <p>Short description of the post goes here...</p>
+                    <a href="#" class="read-more">Read More</a>
+                </article>
+                <article class="post">
+                    <img src="https://via.placeholder.com/300x200" alt="Post 3">
+                    <h3>Amazing Post Title 3</h3>
+                    <p>Short description of the post goes here...</p>
+                    <a href="#" class="read-more">Read More</a>
+                </article>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <h2>Get in Touch</h2>
+            <form>
+                <input type="text" placeholder="Name" required>
+                <input type="email" placeholder="Email" required>
+                <textarea placeholder="Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 My Awesome Blog. All rights reserved.</p>
+    </footer>
+
+    <script>
+    // Mobile navigation
+const navSlide = () => {
+    const burger = document.querySelector('.burger');
+    const nav = document.querySelector('.nav-links');
+    const navLinks = document.querySelectorAll('.nav-links li');
+
+    burger.addEventListener('click', () => {
+        // Toggle Nav
+        nav.classList.toggle('nav-active');
+
+        // Animate Links
+        navLinks.forEach((link, index) => {
+            if (link.style.animation) {
+                link.style.animation = '';
+            } else {
+                link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+            }
+        });
+
+        // Burger Animation
+        burger.classList.toggle('toggle');
+    });
+}
+
+navSlide();
+
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+// GSAP animations
+gsap.registerPlugin(ScrollTrigger);
+
+// Hero section animation
+gsap.from('.hero h1, .hero p, .hero .cta-button', {
+    duration: 1,
+    y: 50,
+    opacity: 0,
+    stagger: 0.2,
+    ease: 'power3.out'
+});
+
+// About section animation
+gsap.from('.about', {
+    scrollTrigger: {
+        trigger: '.about',
+        start: 'top 80%'
+    },
+    duration: 1,
+    y: 50,
+    opacity: 0,
+    ease: 'power3.out'
+});
+
+// Featured posts animation
+gsap.from('.post', {
+    scrollTrigger: {
+        trigger: '.featured',
+        start: 'top 80%'
+    },
+    duration: 1,
+    y: 50,
+    opacity: 0,
+    stagger: 0.2,
+    ease: 'power3.out'
+});
+
+// Contact form animation
+gsap.from('.contact form', {
+    scrollTrigger: {
+        trigger: '.contact',
+        start: 'top 80%'
+    },
+    duration: 1,
+    y: 50,
+    opacity: 0,
+    ease: 'power3.out'
+});
+    
+    
+    
+    // Categories animation
+gsap.from('.category', {
+    scrollTrigger: {
+        trigger: '.categories',
+        start: 'top 80%'
+    },
+    duration: 0.8,
+    y: 50,
+    opacity: 0,
+    stagger: 0.1,
+    ease: 'power3.out'
+});
+    
+    </script>
+</body>
+</html>
