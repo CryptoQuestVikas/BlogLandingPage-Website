@@ -1,6 +1,6 @@
 # BlogLandingPage-Website
 
-<!-- **Languages** -->
+<!--Languages -->
 
 ```
 git clone https://github.com/CryptoQuestVikas/BlogLandingPage-Website.git
