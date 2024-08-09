@@ -1,6 +1,7 @@
 # BlogLandingPage-Website
 
-<!--Languages -->
+# **Languages:**
+> HTML CSS JAVASCRIPT ``i'm using internal css and javascript``
 
 ```
 git clone https://github.com/CryptoQuestVikas/BlogLandingPage-Website.git
